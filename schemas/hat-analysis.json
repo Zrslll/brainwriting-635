@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "brainwriting-635/hat-analysis.json",
+  "title": "HatAnalysis",
+  "description": "The output a hat subagent returns when analyzing a single concept in Phase 2.",
+  "type": "object",
+  "required": ["hat", "concept_id", "summary", "points"],
+  "additionalProperties": false,
+  "properties": {
+    "hat": {
+      "type": "string",
+      "enum": ["white", "yellow", "black", "red", "green"],
+      "description": "The hat color. Blue is the orchestrator and does not produce this output type."
+    },
+    "concept_id": {
+      "type": "string",
+      "description": "ID of the concept being analyzed (from concepts.json)."
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 280,
+      "description": "One-paragraph distillation of this hat's verdict on the concept."
+    },
+    "points": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 7,
+      "description": "Specific points from this hat's perspective. Each point must be concrete, not generic.",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "additionalProperties": false,
+        "properties": {
+          "text": {"type": "string"},
+          "weight": {
+            "type": "string",
+            "enum": ["critical", "important", "nice-to-have"],
+            "description": "How significant this point is from this hat's perspective."
+          },
+          "evidence": {"type": "string"}
+        }
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Questions this hat raises that other hats or the user should answer."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "additionalProperties": false,
+        "properties": {
+          "url": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      },
+      "description": "Required for White hat (facts must be sourced). Optional for others."
+    }
+  }
+}

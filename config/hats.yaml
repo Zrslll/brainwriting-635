@@ -1,0 +1,89 @@
+# Six Thinking Hats (Edward de Bono) for Phase 2 (concept validation).
+# Each top-N concept from Phase 1 is analyzed through 5 colored hats in
+# parallel; the orchestrator wears the Blue hat to synthesize per concept.
+
+hats:
+  - id: white
+    name: White Hat
+    mode: facts_and_data
+    description: >
+      Pure information mode. What do we know for sure? What data exists?
+      What is missing and where could we find it? Neutral, factual, no
+      interpretation or judgment.
+    instructions:
+      - State known facts about this concept domain
+      - Identify what data is missing and what would be needed to evaluate
+      - Cite sources from web search where possible
+      - No opinions, no predictions, no advocacy
+    web_search: required
+
+  - id: yellow
+    name: Yellow Hat
+    mode: benefits_and_optimism
+    description: >
+      Constructive positive mode. What are the genuine benefits? Why might
+      this work? What value does it create? Logical optimism, not blind
+      cheerleading.
+    instructions:
+      - List specific benefits if this concept succeeds
+      - Identify who benefits and how concretely
+      - Find genuine value drivers, not generic praise
+      - Frame benefits as testable hypotheses
+    web_search: optional
+
+  - id: black
+    name: Black Hat
+    mode: risks_and_critique
+    description: >
+      Critical judgment mode. What are the real risks? What could go wrong?
+      Where are the weak points? Logical pessimism with specific reasoning,
+      not generic doomsaying.
+    instructions:
+      - Identify specific failure modes with reasoning
+      - Surface hidden assumptions that might not hold
+      - Name regulatory, ethical, or reputational risks
+      - Distinguish 'will fail' from 'might fail under condition X'
+    web_search: optional
+
+  - id: red
+    name: Red Hat
+    mode: emotion_and_intuition
+    description: >
+      Gut-feeling mode. What emotional response does this evoke? Is it
+      exciting? Boring? Concerning? Inspiring? Pure intuition, no
+      justification required.
+    instructions:
+      - Express the emotional reading of this concept honestly
+      - Identify what feels exciting vs draining
+      - Name visceral concerns even if hard to articulate
+      - Predict how target users would emotionally react
+    web_search: not_used
+
+  - id: green
+    name: Green Hat
+    mode: creativity_and_alternatives
+    description: >
+      Generative mode. How else could this be done? What variations exist?
+      What if we changed key assumptions? Lateral thinking and divergence
+      from the original concept.
+    instructions:
+      - Propose 2-3 alternative ways to execute this concept
+      - Identify which constraints could be relaxed and what becomes possible
+      - Suggest combinations with adjacent ideas or domains
+      - Stay specific - 'do it differently' is not enough
+    web_search: optional
+
+  - id: blue
+    name: Blue Hat
+    mode: meta_and_synthesis
+    description: >
+      Process and orchestration mode. Worn by the orchestrator (main agent).
+      Manages the brainwriting flow, synthesizes outputs, and produces the
+      final per-concept verdict.
+    instructions:
+      - Manage the brainwriting process end-to-end
+      - Synthesize the 5 colored hats into a per-concept recommendation
+      - Surface tensions between hats (e.g. yellow says X, black says not-X)
+      - Produce final report with clear verdict and next steps
+    web_search: as_needed
+    role: orchestrator

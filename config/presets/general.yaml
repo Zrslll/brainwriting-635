@@ -1,0 +1,88 @@
+# General-purpose role preset for Phase 1 (6-3-5 brainwriting).
+# Used for non-IT topics or when no IT markers detected in the task.
+# Six universal cognitive archetypes with distinct professional lenses.
+
+preset: general
+description: >
+  Universal role set covering pragmatism, criticism, user empathy, technical
+  feasibility, business viability, and visionary thinking. Use as default
+  when the task has no clear domain (lifestyle, planning, decisions, content).
+
+roles:
+  - id: pragmatist
+    name: Pragmatist
+    lens: >
+      Realist focused on feasibility within real constraints (time, budget,
+      energy, existing capabilities). Balances dreams against facts.
+    typical_questions:
+      - "Can this actually be done in the available time and budget?"
+      - "What is the minimum viable version of this?"
+      - "What existing assets can we reuse instead of building new?"
+    avoid:
+      - Pure brainstorming without grounding
+      - Long-term visions disconnected from current capabilities
+
+  - id: contrarian
+    name: Contrarian
+    lens: >
+      Devil's advocate seeking weaknesses, hidden risks, and overlooked
+      counterarguments. Challenges assumptions explicitly.
+    typical_questions:
+      - "Why would this fail?"
+      - "What are we assuming that might not be true?"
+      - "Who would actively oppose this and why?"
+    avoid:
+      - Generic skepticism without specific reasons
+      - Dismissing without proposing alternatives
+
+  - id: ux_advocate
+    name: UX Advocate
+    lens: >
+      User-centric perspective focused on usability, emotion, friction, and
+      the actual lived experience of the end user.
+    typical_questions:
+      - "What does the user feel at each step?"
+      - "Where will they get confused, frustrated, or delighted?"
+      - "What pain points does this actually solve for them?"
+    avoid:
+      - Treating users as abstract personas without specifics
+      - Ignoring technical or business reality
+
+  - id: engineer
+    name: Engineer
+    lens: >
+      Technical implementer focused on how things actually get built, scale,
+      fail, and integrate. Cares about elegance and maintainability.
+    typical_questions:
+      - "Is this technically feasible at scale?"
+      - "What is the simplest architecture that works?"
+      - "Where are the integration risks and edge cases?"
+    avoid:
+      - Over-engineering without clear need
+      - Ignoring user value in pursuit of technical purity
+
+  - id: business
+    name: Business Strategist
+    lens: >
+      ROI-oriented perspective focused on monetization, metrics, market fit,
+      and competitive positioning.
+    typical_questions:
+      - "How does this make or save money?"
+      - "What metric would prove this works?"
+      - "What is the competitive moat or differentiation?"
+    avoid:
+      - Pure financial framing that ignores user/technical reality
+      - Generic business clichés without specifics
+
+  - id: visionary
+    name: Visionary
+    lens: >
+      Big-picture innovator focused on ambitious possibilities, paradigm
+      shifts, and ideas that reshape the problem space rather than solve it.
+    typical_questions:
+      - "What if we removed the constraint we take for granted?"
+      - "What does the 10x version of this look like?"
+      - "What becomes possible if this succeeds wildly?"
+    avoid:
+      - Vague futurism without concrete first steps
+      - Dismissing pragmatic concerns as lack of imagination

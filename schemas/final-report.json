@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "brainwriting-635/final-report.json",
+  "title": "FinalReport",
+  "description": "The structured final report produced by the orchestrator (Blue hat) after both phases complete.",
+  "type": "object",
+  "required": ["task", "config", "concepts", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "type": "string",
+      "description": "The original brainwriting task statement from the user."
+    },
+    "config": {
+      "type": "object",
+      "required": ["preset", "rounds", "started_at", "completed_at"],
+      "properties": {
+        "preset": {"type": "string"},
+        "rounds": {"type": "integer"},
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"},
+        "models_used": {
+          "type": "object",
+          "description": "Map of role/hat ID to model slug actually used (or 'auto' when no slug was pinned)."
+        }
+      }
+    },
+    "concepts": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The concepts that went through Phase 2 hats analysis.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "verdict", "hat_synthesis"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "synthesis": {
+            "type": "string",
+            "description": "Cross-round consolidated description of the concept (from Phase 1 dedup)."
+          },
+          "score": {
+            "type": "object",
+            "properties": {
+              "impact": {"type": "number"},
+              "effort": {"type": "number"},
+              "novelty": {"type": "number"},
+              "fit": {"type": "number"}
+            }
+          },
+          "verdict": {
+            "type": "string",
+            "enum": ["strong-pursue", "pursue-with-caveats", "explore-further", "park", "reject"],
+            "description": "Blue hat's overall recommendation on this concept."
+          },
+          "verdict_reasoning": {
+            "type": "string",
+            "description": "Why this verdict, citing the most decisive hat findings."
+          },
+          "hat_synthesis": {
+            "type": "object",
+            "required": ["white", "yellow", "black", "red", "green"],
+            "properties": {
+              "white": {"type": "string"},
+              "yellow": {"type": "string"},
+              "black": {"type": "string"},
+              "red": {"type": "string"},
+              "green": {"type": "string"}
+            },
+            "description": "One-paragraph summary per hat for this concept."
+          },
+          "tensions": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Notable disagreements between hats worth flagging to the user."
+          },
+          "next_steps": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Concrete first actions if pursuing this concept."
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["recommendation", "reasoning"],
+      "properties": {
+        "recommendation": {
+          "type": "string",
+          "description": "Top-level recommendation across all concepts. May recommend one, several, or 'no clear winner - clarify task'."
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Why this recommendation."
+        },
+        "ideas_generated_total": {"type": "integer"},
+        "ideas_after_dedup": {"type": "integer"},
+        "concepts_analyzed": {"type": "integer"}
+      }
+    }
+  }
+}

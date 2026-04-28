@@ -1,0 +1,49 @@
+# Model configuration for subagents.
+#
+# MVP POLICY (v0.1):
+# All values are intentionally null. The orchestrator launches Task tool calls
+# WITHOUT the `model` parameter, allowing Cursor to use its session default
+# (Auto). This works in any Cursor session regardless of available model
+# whitelist and avoids hard dependencies on specific model slugs.
+#
+# This file exists as scaffolding for future versions where model pinning
+# becomes valuable (see references/models-guide.md).
+#
+# WHY NULL FOR MVP:
+# - Cursor's Task tool whitelist is session-dependent and may differ per user
+# - Hard-pinning a slug that becomes unavailable causes silent fallbacks or
+#   refusals
+# - True model diversity (Anthropic + OpenAI + Gemini for cognitive variety)
+#   is better achieved in the standalone CLI evolution (Phase 3)
+# - Role-driven prompt variety already provides meaningful divergence even on
+#   a single underlying model
+
+phase_1_roles:
+  # When non-null, must be a valid model slug from Cursor's current whitelist.
+  # The orchestrator MUST verify availability before passing to Task tool;
+  # if unavailable, fall back to launching without `model` parameter.
+  pragmatist: null
+  contrarian: null
+  ux_advocate: null
+  ux_designer: null
+  engineer: null
+  frontend_engineer: null
+  backend_engineer: null
+  business: null
+  visionary: null
+  product_manager: null
+  qa_edge_cases: null
+  growth_analytics: null
+
+phase_2_hats:
+  white: null
+  yellow: null
+  black: null
+  red: null
+  green: null
+  # blue is the orchestrator itself, not a subagent
+
+orchestrator:
+  # The main agent running the skill. Always uses the user's session model.
+  # No override here is meaningful - this is documentation only.
+  model: null
